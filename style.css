@@ -1,0 +1,445 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: #f7f4ed;
+  --surface: #ffffff;
+  --text: #171717;
+  --muted: #777777;
+
+  --red: #e74c3c;
+  --green: #27ae60;
+  --yellow: #f1c40f;
+  --blue: #3498db;
+
+  --border: #e5e2da;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.app {
+  width: 100%;
+  max-width: 650px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.screen {
+  min-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Logo */
+
+#menu-screen {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.logo-mark {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--text);
+  color: white;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.logo h1 {
+  font-size: 42px;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+/* Buttons */
+
+.menu-buttons {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.primary-btn,
+.secondary-btn,
+.roll-btn {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 16px;
+  font-weight: 700;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.primary-btn {
+  background: var(--text);
+  color: white;
+}
+
+.secondary-btn {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.roll-btn:active,
+.icon-btn:active {
+  transform: scale(0.97);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover,
+.roll-btn:hover {
+  opacity: 0.9;
+}
+
+/* Game Header */
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.game-header h2 {
+  font-size: 24px;
+}
+
+.game-header p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 20px;
+}
+
+/* Players */
+
+.players {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.player strong {
+  margin-left: auto;
+}
+
+.player-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.red-player .player-dot {
+  background: var(--red);
+}
+
+.green-player .player-dot {
+  background: var(--green);
+}
+
+.yellow-player .player-dot {
+  background: var(--yellow);
+}
+
+.blue-player .player-dot {
+  background: var(--blue);
+}
+
+/* Ludo Board */
+
+.ludo-board {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  background: #eeeeee;
+  border: 5px solid var(--text);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Base board cells */
+
+.board-cell {
+  position: relative;
+  border: 1px solid #d7d7d7;
+  background: white;
+}
+
+/* Home areas */
+
+.home-red {
+  background: var(--red);
+}
+
+.home-green {
+  background: var(--green);
+}
+
+.home-yellow {
+  background: var(--yellow);
+}
+
+.home-blue {
+  background: var(--blue);
+}
+
+/* Path */
+
+.path {
+  background: #ffffff;
+}
+
+/* Colored home paths */
+
+.path-red {
+  background: rgba(231, 76, 60, 0.35);
+}
+
+.path-green {
+  background: rgba(39, 174, 96, 0.35);
+}
+
+.path-yellow {
+  background: rgba(241, 196, 15, 0.45);
+}
+
+.path-blue {
+  background: rgba(52, 152, 219, 0.35);
+}
+
+/* Center */
+
+.board-center {
+  background: var(--text);
+}
+
+/* Pieces */
+
+.piece {
+  width: 72%;
+  height: 72%;
+  position: absolute;
+  top: 14%;
+  left: 14%;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.piece-red {
+  background: var(--red);
+}
+
+.piece-green {
+  background: var(--green);
+}
+
+.piece-yellow {
+  background: var(--yellow);
+}
+
+.piece-blue {
+  background: var(--blue);
+}
+
+.piece.movable {
+  animation: pulse 1s infinite;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Dice */
+
+.dice-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.dice {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+#dice-value {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.roll-btn {
+  background: var(--text);
+  color: white;
+}
+
+.roll-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Game Message */
+
+.game-message {
+  text-align: center;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Winner */
+
+#winner-screen {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.winner-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 32px 24px;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.winner-icon {
+  font-size: 58px;
+  margin-bottom: 16px;
+}
+
+.winner-card h2 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.winner-card p {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.winner-card .secondary-btn {
+  margin-top: 10px;
+}
+
+/* Mobile */
+
+@media (max-width: 430px) {
+  .app {
+    padding: 14px;
+  }
+
+  .screen {
+    min-height: calc(100vh - 28px);
+  }
+
+  .logo h1 {
+    font-size: 36px;
+  }
+
+  .logo-mark {
+    width: 46px;
+    height: 46px;
+    font-size: 24px;
+  }
+
+  .ludo-board {
+    border-width: 3px;
+    border-radius: 14px;
+  }
+
+  .player {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .dice {
+    width: 58px;
+    height: 58px;
+  }
+}
